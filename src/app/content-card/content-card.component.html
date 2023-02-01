@@ -1,0 +1,65 @@
+<div class="content-container">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>DESCRIPTION</th>
+            <th>CREATOR</th>
+            <th>IMAGE</th>
+            <th>TYPE</th>
+            <th>TAGS</th>
+        </tr>
+        <tr *ngFor = "let content of initContent.contentArr">
+            <td>{{content.id}}</td>
+            <td>{{content.title}}</td>
+            <td>{{content.description}}</td>
+            <td>{{content.creator}}</td>
+            <td><img *ngIf="content.imgURL" src="{{content.imgURL}}" alt="{{content.title}}" width="60" height="60"/></td>
+            <td>{{content?.type}}</td>
+            <td><span *ngFor="let tag of content.tags" class="tag-span">{{tag}}</span></td>
+        </tr> 
+    </table>
+
+
+    
+    <form #userInput = "ngForm" (ngSubmit)="onSubmit()">
+        Enter number to fetch content: <input type="number" name = 'contentIndex' [(ngModel)]="contentIndex">
+        <br/>
+        <span>Rememeber array index starts with 0</span>
+        <br/>
+        <button class="button" type="submit">Fetch Content</button>
+    </form>
+
+    <div *ngIf="errorMessage=='' && fetchedContent;else elseBlock">
+        <ul>
+            <li>
+                ID : {{fetchedContent.id}}
+            </li>
+            <li>
+                TITLE : {{fetchedContent.title}}
+            </li>
+            <li>
+                DESCRIPTION : {{fetchedContent.description}}
+            </li>
+            <li>
+                CREATOR : {{fetchedContent.creator}}
+            </li>
+            <li >
+                IMAGE : <img *ngIf="fetchedContent.imgURL" src="{{fetchedContent.imgURL}}" alt="{{fetchedContent.title}}" width="60" height="60"/>
+            </li>
+            <li>
+                TYPE : {{fetchedContent.type}}
+            </li>
+        </ul>
+    </div>
+    <br/>
+    <ng-template #elseBlock>
+        <span style="color: brown;">
+            {{errorMessage}}
+        </span>
+    </ng-template>
+
+    <!-- {{ userInput.value | json }}-->
+     
+</div>
+
