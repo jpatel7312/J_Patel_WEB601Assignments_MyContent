@@ -1,0 +1,6 @@
+<app-content-card 
+    *ngFor="let content of contentListArr;let i = index;"
+    [ngStyle]="{'border': i==0?'2px solid black':'1px solid #201e1e'}"
+    [contentToDisplay]="content"
+>
+</app-content-card>

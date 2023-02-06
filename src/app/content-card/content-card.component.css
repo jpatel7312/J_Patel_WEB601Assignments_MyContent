@@ -1,19 +1,21 @@
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+.card-container{
+    display:inline-block;
+    width:100%;
+}
+.content{
+    display:block;
+    background:#b7b697a1;
+    color: #000;
+    text-align:justify;
+    margin: 0.3%;
+    padding: 10px;
+    min-width: 500px;
+}
+.displayBlock{
+    display: block;
 }
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-span.tag-span{
-    display: inline-block;
+:host {
+    margin-bottom: 10px;
+    display: block;
 }
