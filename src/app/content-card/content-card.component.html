@@ -1,4 +1,6 @@
-<div class="content">
+<div class="content" id="{{contentToDisplay.title}}"
+    ngClass="content-{{contentToDisplay.type?contentToDisplay.type:'no-type'}} {{contentToDisplay.highlight?'highlight':''}}"
+>
     <h3>{{contentToDisplay.title}}</h3>
     <span class="displayBlock">
         <strong class="displayBlock">Description</strong>

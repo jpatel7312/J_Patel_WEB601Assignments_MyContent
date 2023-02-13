@@ -4,7 +4,6 @@
 }
 .content{
     display:block;
-    background:#b7b697a1;
     color: #000;
     text-align:justify;
     margin: 0.3%;
@@ -13,6 +12,33 @@
 }
 .displayBlock{
     display: block;
+}
+
+.content-Movie{
+    background: #46ff0aa1;
+}
+
+.content-Sitcom{
+    background: #3636ea99;
+}
+
+.content-Web-Series {
+    background: #f38484;
+}
+
+.content-no-type {
+    background: #ffb256;
+}
+
+.content.highlight{
+    background: #ffff00d6;
+    animation: changeBack 3s infinite;
+}
+
+
+@keyframes changeBack {
+    from {background-color: #ffff00d6;}
+    to {background-color: #fbfbdad6;}
 }
 
 :host {

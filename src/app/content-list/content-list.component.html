@@ -1,6 +1,30 @@
+<div style="margin-bottom: 25px;">
+    <form [formGroup]="userTitleInputForm" (ngSubmit)="onSubmit()">
+        <label for="content-title-field">Enter title: </label>
+        <input id="content-title-field" formControlName="contentTitleField" placeholder="Content title">
+        <button type="submit">Submit</button>
+    </form>
+    <span *ngIf="displayMsgCode>-2 && userTitleInputForm.value.contentTitleField" [ngStyle]="{'color':displayMsgCode===-1?'Red':'Green'}">
+        {{displayMsgCode===-1?'Title Does not Exist':'Title Exists'}}
+    </span>
+</div>
 <app-content-card 
-    *ngFor="let content of contentListArr;let i = index;"
+    *ngFor="let content of contentListArr | contentTypeFilter:'Movie';let i = index;"
     [ngStyle]="{'border': i==0?'2px solid black':'1px solid #201e1e'}"
     [contentToDisplay]="content"
->
-</app-content-card>
+></app-content-card>
+<app-content-card 
+    *ngFor="let content of contentListArr | contentTypeFilter:'Sitcom';let i = index;"
+    [ngStyle]="{'border': i==0?'2px solid black':'1px solid #201e1e'}"
+    [contentToDisplay]="content"
+></app-content-card>
+<app-content-card 
+    *ngFor="let content of (contentListArr | contentTypeFilter:'Web-Series');let i = index;"
+    [ngStyle]="{'border': i==0?'2px solid black':'1px solid #201e1e'}"
+    [contentToDisplay]="content"
+></app-content-card>
+<app-content-card 
+    *ngFor="let content of (contentListArr | contentTypeFilter:'');let j = index;"
+    [ngStyle]="{'border': j==0?'2px solid black':'1px solid #201e1e'}"
+    [contentToDisplay]="content"
+></app-content-card>
