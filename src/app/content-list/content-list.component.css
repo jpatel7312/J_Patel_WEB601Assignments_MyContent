@@ -1,0 +1,11 @@
+.firstContent{
+    border: 2px solid black;
+}
+
+.generalContent {
+    border: 1px solid #201e1e;
+}
+
+.hoverContent {
+    border: 2px dotted red;
+}

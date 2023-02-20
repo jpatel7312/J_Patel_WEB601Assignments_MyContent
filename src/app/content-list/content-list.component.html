@@ -8,23 +8,27 @@
         {{displayMsgCode===-1?'Title Does not Exist':'Title Exists'}}
     </span>
 </div>
-<app-content-card 
+<app-content-card
     *ngFor="let content of contentListArr | contentTypeFilter:'Movie';let i = index;"
-    [ngStyle]="{'border': i==0?'2px solid black':'1px solid #201e1e'}"
+    [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
+    [appHoverAffect]="'contentHover'"
 ></app-content-card>
-<app-content-card 
+<app-content-card
     *ngFor="let content of contentListArr | contentTypeFilter:'Sitcom';let i = index;"
-    [ngStyle]="{'border': i==0?'2px solid black':'1px solid #201e1e'}"
+    [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
+    [appHoverAffect]="'contentHover'"
 ></app-content-card>
-<app-content-card 
+<app-content-card
     *ngFor="let content of (contentListArr | contentTypeFilter:'Web-Series');let i = index;"
-    [ngStyle]="{'border': i==0?'2px solid black':'1px solid #201e1e'}"
+    [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
+    [appHoverAffect]="'contentHover'"
 ></app-content-card>
-<app-content-card 
-    *ngFor="let content of (contentListArr | contentTypeFilter:'');let j = index;"
-    [ngStyle]="{'border': j==0?'2px solid black':'1px solid #201e1e'}"
+<app-content-card
+    *ngFor="let content of (contentListArr | contentTypeFilter:'');let i = index;"
+    [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
+    [appHoverAffect]="'contentHover'"
 ></app-content-card>

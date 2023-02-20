@@ -11,15 +11,22 @@
         {{contentToDisplay.creator}}
     </span>
     <span class="displayBlock" *ngIf="contentToDisplay.type">
-        <strong class="displayBlock">Type</strong>
-        {{contentToDisplay?.type}}
+        <strong class="displayBlock" [appHoverAffect]="'typeHover'">Type</strong>
+        <span>{{contentToDisplay?.type}}</span>
     </span>
-    <span class="displayBlock" *ngIf="contentToDisplay.imgURL">
+    <span class="displayBlock">
         <strong class="displayBlock">Image:</strong>
-        <img src="{{contentToDisplay.imgURL}}" alt="{{contentToDisplay.title}}" width="60" height="60" (click)="logIdTitle(contentToDisplay)"/>
+        <img *ngIf="contentToDisplay.imgURL; else defaultImage" src="{{contentToDisplay.imgURL}}" alt="{{contentToDisplay.title}}" width="60" height="60" (click)="logIdTitle(contentToDisplay)"/>
     </span>
+    <ng-template #defaultImage>
+        <img src="../assets/default-content.jpg" alt="{{contentToDisplay.title}}" width="60" height="60" (click)="logIdTitle(contentToDisplay)"/>
+    </ng-template>
     <span class="displayBlock" *ngIf="contentToDisplay.tags">
         <strong class="displayBlock">Tags</strong>
-        <span *ngFor="let tag of contentToDisplay.tags;let i=index" class="tag-span">{{tag}} {{i==contentToDisplay.tags.length-1?'':'| '}}</span>
+        <span *ngFor="let tag of contentToDisplay.tags;let i=index" class="tag-span">
+            <span [appHoverAffect]="'tagHover'">
+                {{tag}}
+            </span> {{i==contentToDisplay.tags.length-1?'':'| '}}
+        </span>
     </span>
 </div>
