@@ -1,3 +1,4 @@
+<app-create-content (newContentEvent)="addNewContentToList($event)"></app-create-content>
 <div style="margin-bottom: 25px;">
     <form [formGroup]="userTitleInputForm" (ngSubmit)="onSubmit()">
         <label for="content-title-field">Enter title: </label>

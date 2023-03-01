@@ -30,13 +30,19 @@ export class ContentListComponent {
     }
     this.displayMsgCode = this.contentListArr.findIndex(content=>content.title.toLowerCase()===this.userTitleInputForm.controls.contentTitleField.value?.toLowerCase());
     if(this.displayMsgCode>-1){
-      this.contentListArr[this.displayMsgCode].highlight = true;   
-      this.scroller.scrollToAnchor(this.contentListArr[this.displayMsgCode].title);   
+      this.contentListArr[this.displayMsgCode].highlight = true;
+      this.scroller.scrollToAnchor(this.contentListArr[this.displayMsgCode].title);
     }
     setTimeout(() => {
       this.contentListArr[this.displayMsgCode].highlight = false;
       this.displayMsgCode = -2;
     }, 5000);
+  }
+
+  addNewContentToList(event:Content){
+    this.contentListArr.push(event);
+    this.contentListArr = [...this.contentListArr];
+
   }
 
   constructor(private formBuilder: FormBuilder, private scroller: ViewportScroller){
