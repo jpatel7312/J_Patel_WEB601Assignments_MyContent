@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Content } from 'src/helper-files/content-interface';
+import { Content } from '../../../src/helper-files/content-interface';
 
 @Component({
   selector: 'app-create-content',
