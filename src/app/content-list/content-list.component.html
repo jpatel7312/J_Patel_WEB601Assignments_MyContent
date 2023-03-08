@@ -1,13 +1,16 @@
 <div style="margin-bottom: 25px;">
     <form [formGroup]="userTitleInputForm" (ngSubmit)="onSubmit()">
-        <label for="content-title-field">Enter title: </label>
-        <input id="content-title-field" formControlName="contentTitleField" placeholder="Content title">
+        <label for="content-title-field">Enter ID: </label>
+        <input id="content-title-field" type="number" formControlName="contentTitleField" placeholder="Content title">
         <button type="submit">Submit</button>
     </form>
     <span *ngIf="displayMsgCode>-2 && userTitleInputForm.value.contentTitleField" [ngStyle]="{'color':displayMsgCode===-1?'Red':'Green'}">
         {{displayMsgCode===-1?'Title Does not Exist':'Title Exists'}}
     </span>
 </div>
+<app-content-card *ngIf="retrievedContent"
+    [contentToDisplay]="retrievedContent"
+></app-content-card>
 <app-content-card
     *ngFor="let content of contentListArr | contentTypeFilter:'Movie';let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"

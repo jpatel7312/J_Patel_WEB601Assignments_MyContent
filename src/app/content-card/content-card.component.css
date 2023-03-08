@@ -31,8 +31,7 @@
 }
 
 .content.highlight{
-    background: #ffff00d6;
-    animation: changeBack 3s infinite;
+    box-shadow: 10px 10px 5px 3px  #aaaaaa;
 }
 
 
