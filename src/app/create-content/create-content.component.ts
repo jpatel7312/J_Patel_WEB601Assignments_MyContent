@@ -39,6 +39,7 @@ export class CreateContentComponent {
         this.newContentEvent.emit(this.newContentItem);
         this.createNewContentForm.reset();
         this.formSubmitted = false;
+        this.formSuccess = true;
       } catch (error) {
         this.formSuccess = false;
       }
