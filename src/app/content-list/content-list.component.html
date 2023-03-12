@@ -1,4 +1,5 @@
 <div style="margin-bottom: 25px;">
+    <app-modify-content-component (newContentEvent)="addNewContentToList($event)"></app-modify-content-component>
     <form [formGroup]="userTitleInputForm" (ngSubmit)="onSubmit()">
         <label for="content-title-field">Enter ID: </label>
         <input id="content-title-field" type="number" formControlName="contentTitleField" placeholder="Content title">

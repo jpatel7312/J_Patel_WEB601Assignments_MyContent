@@ -11,7 +11,7 @@ const generateContent = (id:number,contentArr:(string)[])=>{
     }
 }
 export const contentList = {
-    generateContent: ()=>{
+    generateContent: ():Content[]=>{
         contentListArr.push({
             ...generateContent(
               1,['Avatar','Most popular aminated movie of all time','James Cameron']
@@ -61,11 +61,7 @@ export const contentList = {
               8,['The God Father','The Godfather is a 1972 American crime film','Francis Ford Coppola']
             )
           });
-
-    },
-    getSpecificContent:(id:number):Content=>{
-        const contentToReturn = contentListArr.filter(content=>content.id===id);
-        return contentToReturn[0];
+      return contentListArr;
     },
     contentListArr
 }

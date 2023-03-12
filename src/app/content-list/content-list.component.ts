@@ -35,6 +35,12 @@ export class ContentListComponent {
 
   }
 
+  addNewContentToList(event:Content){
+    const contentIndxToUpdate = this.contentListArr.findIndex(content=>content.id==event.id);
+    contentIndxToUpdate > -1 ? this.contentListArr[contentIndxToUpdate] = event : this.contentListArr.push(event);
+    this.contentListArr = [...this.contentListArr];
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private entrnService: EntertainmentServiceService,
