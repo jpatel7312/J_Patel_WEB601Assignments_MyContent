@@ -1,1 +1,1 @@
-<button mat-raised-button (click)="openDialog('Add',{})" style="margin-bottom: 10px;">Add New Content</button>
+<button mat-raised-button (click)="openDialog(buttonAction,contentToUpdate)" style="margin-bottom: 10px;">{{buttonAction}} {{buttonAction == 'Add'? 'New ':''}}Content</button>

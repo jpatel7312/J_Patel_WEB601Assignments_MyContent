@@ -1,5 +1,5 @@
 <div style="margin-bottom: 25px;">
-    <app-modify-content-component (newContentEvent)="addNewContentToList($event)"></app-modify-content-component>
+    <app-modify-content-component (newContentEvent)="addNewContentToList($event)" buttonAction="Add" [contentToUpdate]="{}"></app-modify-content-component>
 
     <mat-accordion>
         <mat-expansion-panel>
@@ -30,28 +30,28 @@
 ></app-content-card>
 <mat-divider style="margin:10px"></mat-divider>
 <app-content-card
-    *ngFor="let content of contentListArr | contentTypeFilter:'Movie';let i = index;"
+    *ngFor="let content of entrnService.sharedContent | contentTypeFilter:'Movie';let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
     [appHoverAffect]="'contentHover'"
 ></app-content-card>
 <mat-divider style="margin:10px"></mat-divider>
 <app-content-card
-    *ngFor="let content of contentListArr | contentTypeFilter:'Sitcom';let i = index;"
+    *ngFor="let content of entrnService.sharedContent | contentTypeFilter:'Sitcom';let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
     [appHoverAffect]="'contentHover'"
 ></app-content-card>
 <mat-divider style="margin:10px"></mat-divider>
 <app-content-card
-    *ngFor="let content of (contentListArr | contentTypeFilter:'Web-Series');let i = index;"
+    *ngFor="let content of (entrnService.sharedContent | contentTypeFilter:'Web-Series');let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
     [appHoverAffect]="'contentHover'"
 ></app-content-card>
 <mat-divider style="margin:10px"></mat-divider>
 <app-content-card
-    *ngFor="let content of (contentListArr | contentTypeFilter:'');let i = index;"
+    *ngFor="let content of (entrnService.sharedContent | contentTypeFilter:'');let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
     [appHoverAffect]="'contentHover'"

@@ -32,4 +32,7 @@
             </span>
         </span>
     </mat-card-content>
+    <mat-card-footer>
+        <app-modify-content-component (newContentEvent)="addNewContentToList($event)" buttonAction="Update" [contentToUpdate]="contentToDisplay"></app-modify-content-component>
+    </mat-card-footer>
 </mat-card>

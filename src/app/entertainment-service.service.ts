@@ -9,6 +9,7 @@ import { Content } from '../helper-files/content-interface';
 export class EntertainmentServiceService {
 
   conentUrl = 'api/content/';
+  sharedContent:Content[] = [];
   constructor(private http:HttpClient) { }
 
   getContent(): Observable<Content[]>{

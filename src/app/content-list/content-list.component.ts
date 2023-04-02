@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Content } from '../../../src/helper-files/content-interface';
 import { EntertainmentServiceService } from '../entertainment-service.service';
@@ -11,7 +11,7 @@ import { MessageService } from '../message.service';
   styleUrls: ['./content-list.component.css']
 })
 export class ContentListComponent {
-  contentListArr:Content[] = [];
+  @Input() newContentEvent: any;
   retrievedContent:Content|any;
   displayMsgCode:number=-2;
 
@@ -36,14 +36,13 @@ export class ContentListComponent {
   }
 
   addNewContentToList(event:Content){
-    const contentIndxToUpdate = this.contentListArr.findIndex(content=>content.id==event.id);
-    contentIndxToUpdate > -1 ? this.contentListArr[contentIndxToUpdate] = event : this.contentListArr.push(event);
-    this.contentListArr = [...this.contentListArr];
+    this.entrnService.sharedContent.push(event);
+    this.entrnService.sharedContent = [...this.entrnService.sharedContent];
   }
 
   constructor(
     private formBuilder: FormBuilder,
-    private entrnService: EntertainmentServiceService,
+    public entrnService: EntertainmentServiceService,
     private msgService: MessageService
   ){
 
@@ -51,7 +50,7 @@ export class ContentListComponent {
 
   ngOnInit() {
     this.entrnService.getContent().subscribe((content)=>{
-      this.contentListArr = content;
+      this.entrnService.sharedContent = content;
       this.msgService.add({status:1,msg:'Content array loaded!'});
       this.onSubmit(4);
       setTimeout(() => {

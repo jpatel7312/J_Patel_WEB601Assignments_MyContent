@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Inject, Optional } from '@angular/core';
+import { Component, EventEmitter, Output, Input, Inject, Optional } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Content } from '../../../src/helper-files/content-interface';
@@ -12,24 +12,18 @@ import { MessageService } from '../message.service';
 })
 export class ModifyContentComponentComponent {
   @Output() newContentEvent: any = new EventEmitter<any>();
+  @Input() buttonAction: string = 'Add';
+  @Input() contentToUpdate: Content | any;
   newContentItem:Content | any;
   formSubmitted: Boolean = false;
   formSuccess: Boolean = false;
-  contentListArr: any;
+
   exitingContent: Content | null = null;
   constructor(
-    private formBuilder: FormBuilder,
     private entrnService: EntertainmentServiceService,
     private msgService: MessageService,
     public dialog: MatDialog
   ){}
-  createNewContentForm = this.formBuilder.group({
-    id:[],
-    title: ['', Validators.required],
-    description: ['', Validators.required],
-    creator: ['', Validators.required],
-    type: ''
-  });
 
   openDialog(action: string, data: any): void {
     data.action = action;
@@ -39,32 +33,14 @@ export class ModifyContentComponentComponent {
     });
 
     dialogRef.afterClosed().subscribe(async (result) => {
-      if (result.event == 'Add') {
         await this.onCreateNewContentSubmit(result.event,result.data);
-      }
-      
     })
   }
   
 
-  populateContent(id:any) {
-    this.entrnService.getContentAtId(id.value).subscribe(content=>{
-      this.exitingContent = content;
-      if (content) {
-        this.createNewContentForm.patchValue({
-          title: content.title,
-          description:  content.description,
-          creator: content.creator,
-          type: content.type
-        });
-      }
-    })
-  }
-
   emitEventAndResetForm(isEdit:Boolean,content:Content){
     this.formSuccess = true;
     this.newContentEvent.emit(content);
-    this.createNewContentForm.reset();
     this.formSubmitted = false;
     this.exitingContent = null;
     this.msgService.add({status:1,msg:isEdit?'Updated Content Successfully!!':'Added Content Successfully!!'});
@@ -78,11 +54,13 @@ export class ModifyContentComponentComponent {
     this.newContentItem = data;
     try {
       if (action=='Update') {
-        const contentToPut = {...this.exitingContent,...this.newContentItem};
+        const contentToPut = this.newContentItem;
         this.entrnService.putContent(contentToPut).subscribe((content)=>{
           this.emitEventAndResetForm(true,contentToPut);
         })
       } else {
+        // Delete id so that new id gets assigned 
+        delete this.newContentItem.id;
         this.entrnService.postContent(this.newContentItem).subscribe((content)=>{
           this.emitEventAndResetForm(false,content);
         })
@@ -108,14 +86,22 @@ export class ModifyContentComponentDialog {
     private formBuilder: FormBuilder,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: Content
   ) {
-    console.log(data);
     this.local_data = {...data};
     this.action = this.local_data.action;
     dialogRef.disableClose = true;
+    if(this.action == 'Update'){
+        this.createNewContentForm.patchValue({
+          id: data.id,
+          title: data.title,
+          description:  data.description,
+          creator: data.creator,
+          type: data.type
+        });
+    }
   }
 
   createNewContentForm = this.formBuilder.group({
-    id:[{value:0,disabled:true}],
+    id: [{value:0,disabled:true}],
     title: ['', Validators.required],
     description: ['', Validators.required],
     creator: ['', Validators.required],
@@ -124,7 +110,7 @@ export class ModifyContentComponentDialog {
 
   doAction(){
     if (this.createNewContentForm.status.toLowerCase() === 'valid') {
-      this.dialogRef.close({event:this.action,data:this.createNewContentForm.value});
+      this.dialogRef.close({event:this.action,data:{...this.local_data, ...this.createNewContentForm.getRawValue()}});
     }
     
   }
