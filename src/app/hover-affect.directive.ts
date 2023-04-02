@@ -32,10 +32,10 @@ export class HoverAffectDirective {
         if(decorate){
           this.originalClass = this.el.nativeElement.classList.value;
           this.el.nativeElement.classList.add('hoverContent');
-          this.el.nativeElement.classList.remove(this.originalClass);
+          this.el.nativeElement.classList.remove(this.originalClass.split(' '));
         }else{
           this.el.nativeElement.classList.remove('hoverContent');
-          this.el.nativeElement.classList.add(this.originalClass);
+          this.el.nativeElement.classList.add(this.originalClass.split(' '));
         }
         break;
     }

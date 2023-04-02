@@ -1,35 +1,55 @@
 <div style="margin-bottom: 25px;">
     <app-modify-content-component (newContentEvent)="addNewContentToList($event)"></app-modify-content-component>
-    <form [formGroup]="userTitleInputForm" (ngSubmit)="onSubmit()">
-        <label for="content-title-field">Enter ID: </label>
-        <input id="content-title-field" type="number" formControlName="contentTitleField" placeholder="Content title">
-        <button type="submit">Submit</button>
-    </form>
-    <span *ngIf="displayMsgCode>-2 && userTitleInputForm.value.contentTitleField" [ngStyle]="{'color':displayMsgCode===-1?'Red':'Green'}">
-        {{displayMsgCode===-1?'Title Does not Exist':'Title Exists'}}
-    </span>
+
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+            <mat-panel-title>
+                Fetch Content
+            </mat-panel-title>
+            <mat-panel-description>
+                Fetch Content Using Content ID
+            </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <form [formGroup]="userTitleInputForm" (ngSubmit)="onSubmit()">
+                <mat-form-field class="full-width">
+                    <mat-label>Enter Content Id:</mat-label>
+                    <input id="content-title-field" matInput type="number" formControlName="contentTitleField" placeholder="Content title">
+                </mat-form-field>
+                <button type="submit"  mat-flat-button color="primary">Submit</button>
+            </form>
+            <span *ngIf="displayMsgCode>-2 && userTitleInputForm.value.contentTitleField" [ngStyle]="{'color':displayMsgCode===-1?'Red':'Green'}">
+                {{displayMsgCode===-1?'Title Does not Exist':'Title Exists'}}
+            </span>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
 <app-content-card *ngIf="retrievedContent"
     [contentToDisplay]="retrievedContent"
 ></app-content-card>
+<mat-divider style="margin:10px"></mat-divider>
 <app-content-card
     *ngFor="let content of contentListArr | contentTypeFilter:'Movie';let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
     [appHoverAffect]="'contentHover'"
 ></app-content-card>
+<mat-divider style="margin:10px"></mat-divider>
 <app-content-card
     *ngFor="let content of contentListArr | contentTypeFilter:'Sitcom';let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
     [appHoverAffect]="'contentHover'"
 ></app-content-card>
+<mat-divider style="margin:10px"></mat-divider>
 <app-content-card
     *ngFor="let content of (contentListArr | contentTypeFilter:'Web-Series');let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"
     [contentToDisplay]="content"
     [appHoverAffect]="'contentHover'"
 ></app-content-card>
+<mat-divider style="margin:10px"></mat-divider>
 <app-content-card
     *ngFor="let content of (contentListArr | contentTypeFilter:'');let i = index;"
     [ngClass]="i===0?'firstContent':'generalContent'"

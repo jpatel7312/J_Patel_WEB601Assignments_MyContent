@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Add Entertainment Content</h1>
+<div mat-dialog-content>
+    <form [formGroup]="createNewContentForm">
+        <mat-form-field class="full-width">
+            <mat-label>Enter Id:</mat-label>
+            <input matInput type="number" placeholder="Content Id" formControlName="id" >
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Title:</mat-label>
+            <input matInput placeholder="Content Title" formControlName="title" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Description:</mat-label>
+            <input matInput placeholder="Content Description" formControlName="description" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Creator:</mat-label>
+            <input matInput placeholder="Content Creator" formControlName="creator" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Type:</mat-label>
+            <input matInput placeholder="Content Type" formControlName="type">
+        </mat-form-field>
+    </form>
+</div>
+<mat-dialog-actions>
+    <button mat-button (click)="doAction()" mat-flat-button cdkFocusInitial color="primary">{{action}} Content</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</mat-dialog-actions>

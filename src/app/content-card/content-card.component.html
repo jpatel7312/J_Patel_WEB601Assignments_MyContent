@@ -1,32 +1,35 @@
-<div class="content" id="{{contentToDisplay.title}}"
-    ngClass="content-{{contentToDisplay.type?contentToDisplay.type:'no-type'}} {{contentToDisplay.highlight?'highlight':''}}"
->
-    <h3>{{contentToDisplay.title}}</h3>
-    <span class="displayBlock">
-        <strong class="displayBlock">Description</strong>
-        {{contentToDisplay.description}}
-    </span>
-    <span class="displayBlock">
-        <strong class="displayBlock">Creator</strong>
-        {{contentToDisplay.creator}}
-    </span>
-    <span class="displayBlock" *ngIf="contentToDisplay.type">
-        <strong class="displayBlock" [appHoverAffect]="'typeHover'">Type</strong>
-        <span>{{contentToDisplay?.type}}</span>
-    </span>
-    <span class="displayBlock">
-        <strong class="displayBlock">Image:</strong>
-        <img *ngIf="contentToDisplay.imgURL; else defaultImage" src="{{contentToDisplay.imgURL}}" alt="{{contentToDisplay.title}}" width="60" height="60" (click)="logIdTitle(contentToDisplay)"/>
-    </span>
-    <ng-template #defaultImage>
-        <img src="../assets/default-content.jpg" alt="{{contentToDisplay.title}}" width="60" height="60" (click)="logIdTitle(contentToDisplay)"/>
-    </ng-template>
-    <span class="displayBlock" *ngIf="contentToDisplay.tags">
-        <strong class="displayBlock">Tags</strong>
-        <span *ngFor="let tag of contentToDisplay.tags;let i=index" class="tag-span">
-            <span [appHoverAffect]="'tagHover'">
-                {{tag}}
-            </span> {{i==contentToDisplay.tags.length-1?'':'| '}}
+<mat-card class="content" id="{{contentToDisplay.title}}"
+    ngClass="content-{{contentToDisplay.type?contentToDisplay.type:'no-type'}} {{contentToDisplay.highlight?'highlight':''}}">
+    <mat-card-content>
+        <mat-card-title>
+            {{contentToDisplay.title}}
+        </mat-card-title>
+        <span class="displayBlock">
+            <strong class="displayBlock">Description</strong>
+            {{contentToDisplay.description}}
         </span>
-    </span>
-</div>
+        <span class="displayBlock">
+            <strong class="displayBlock">Creator</strong>
+            {{contentToDisplay.creator}}
+        </span>
+        <span class="displayBlock" *ngIf="contentToDisplay.type">
+            <strong class="displayBlock" [appHoverAffect]="'typeHover'">Type</strong>
+            <span>{{contentToDisplay?.type}}</span>
+        </span>
+        <span class="displayBlock">
+            <strong class="displayBlock">Image:</strong>
+            <img *ngIf="contentToDisplay.imgURL; else defaultImage" src="{{contentToDisplay.imgURL}}" alt="{{contentToDisplay.title}}" width="60" height="60" (click)="logIdTitle(contentToDisplay)"/>
+        </span>
+        <ng-template #defaultImage>
+            <img src="../assets/default-content.jpg" mat-card-image alt="{{contentToDisplay.title}}" width="60" height="60" (click)="logIdTitle(contentToDisplay)"/>
+        </ng-template>
+        <span class="displayBlock" *ngIf="contentToDisplay.tags">
+            <strong class="displayBlock">Tags</strong>
+            <span *ngFor="let tag of contentToDisplay.tags;let i=index" class="tag-span">
+                <span [appHoverAffect]="'tagHover'">
+                    {{tag}}
+                </span> {{i==contentToDisplay.tags.length-1?'':'| '}}
+            </span>
+        </span>
+    </mat-card-content>
+</mat-card>
