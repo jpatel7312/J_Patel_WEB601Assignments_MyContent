@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Content } from 'src/helper-files/content-interface';
+import { Content } from '../../../src/helper-files/content-interface';
 import { EntertainmentServiceService } from '../entertainment-service.service';
 import { MessageService } from '../message.service';
 
