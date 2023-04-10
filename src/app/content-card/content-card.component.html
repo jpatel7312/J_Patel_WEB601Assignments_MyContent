@@ -5,8 +5,10 @@
             {{contentToDisplay.title}}
         </mat-card-title>
         <span class="displayBlock">
-            <strong class="displayBlock">Description</strong>
-            {{contentToDisplay.description}}
+            <strong class="displayBlock">Get Details</strong>
+            <a [routerLink]="['/content',contentToDisplay.id]" routerLinkActive="active">
+                Fetch Details
+            </a>
         </span>
         <span class="displayBlock">
             <strong class="displayBlock">Creator</strong>

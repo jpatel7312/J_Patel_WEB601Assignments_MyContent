@@ -25,9 +25,9 @@
         </mat-expansion-panel>
     </mat-accordion>
 </div>
-<app-content-card *ngIf="retrievedContent"
+<!-- <app-content-card *ngIf="retrievedContent"
     [contentToDisplay]="retrievedContent"
-></app-content-card>
+></app-content-card> -->
 <mat-divider style="margin:10px"></mat-divider>
 <app-content-card
     *ngFor="let content of entrnService.sharedContent | contentTypeFilter:'Movie';let i = index;"

@@ -1,6 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Content } from '../../../src/helper-files/content-interface';
 import { EntertainmentServiceService } from '../entertainment-service.service';
 import { MessageService } from '../message.service';
@@ -52,7 +53,7 @@ export class ContentListComponent {
     this.entrnService.getContent().subscribe((content)=>{
       this.entrnService.sharedContent = content;
       this.msgService.add({status:1,msg:'Content array loaded!'});
-      this.onSubmit(4);
+      //this.onSubmit(4);
       setTimeout(() => {
         this.msgService.clear();
       }, 2000);

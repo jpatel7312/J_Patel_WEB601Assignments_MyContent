@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>{{contentAtSpecificId.title}}</mat-card-title>
+      <mat-card-subtitle>{{contentAtSpecificId.type}}</mat-card-subtitle>
+      <mat-card-subtitle>{{contentAtSpecificId.creator}}</mat-card-subtitle>
+      <mat-card-subtitle>
+        <span *ngFor="let tag of contentAtSpecificId.tags;let i=index" class="tag-span">
+            <span>
+                {{tag}}
+            </span> {{i==contentAtSpecificId.tags.length-1?'':'| '}}
+        </span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <img mat-card-image *ngIf="contentAtSpecificId.imgURL; else defaultImage" src="{{contentAtSpecificId.imgURL}}" alt="{{contentAtSpecificId.title}}" width="60" height="60" />
+        <ng-template #defaultImage>
+            <img src="../assets/default-content.jpg" mat-card-image alt="{{contentAtSpecificId.title}}" width="60" height="60" />
+        </ng-template>
+        <p>
+            {{contentAtSpecificId.description}}
+        </p>
+        <a routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+            Back to Content List
+        </a>
+    </mat-card-content>
+</mat-card>
